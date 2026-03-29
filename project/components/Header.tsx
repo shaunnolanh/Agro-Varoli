@@ -14,8 +14,8 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 inset-x-0 z-[100] bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] border-b border-zinc-200/70">
-      <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-4 py-3 sm:px-6 lg:px-20">
+    <header className="fixed top-0 inset-x-0 z-[100] px-4 pt-4 sm:px-8">
+      <div className="mx-auto flex w-full max-w-3xl items-center justify-between rounded-full border border-white/70 bg-white/95 px-4 py-2 shadow-lg backdrop-blur">
         <Link href="/" className="flex items-center gap-3 rounded-3xl px-2 py-1">
           <img src="/logo.png" alt="Agro Veterinaria Varoli" className="h-10 w-10 object-contain" />
           <div className="leading-tight">

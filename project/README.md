@@ -28,6 +28,9 @@ npm install
    - Email: el que prefieras (ej: `admin@peonpets.com`)
    - Password: contraseña segura
 
+4. En **Storage → Buckets**, crear el bucket `imagenes-sitio` y marcarlo como **Public bucket**
+
+
 ### 3. Configurar variables de entorno
 
 Copiar el archivo de ejemplo y completar con los datos de Supabase:
@@ -45,6 +48,14 @@ SUPABASE_SERVICE_ROLE_KEY=tu-service-role-key
 ```
 
 Los valores se encuentran en: Supabase Dashboard → Project Settings → API
+
+
+### Storage de imágenes (bucket público)
+
+- Bucket configurado: `imagenes-sitio` (público).
+- Formato de URL pública esperado:
+  `https://[PROJECT_REF].supabase.co/storage/v1/object/public/imagenes-sitio/[nombre-archivo]`
+- Mientras no se suban archivos reales, el proyecto usa placeholders de `placehold.co` y deja documentada la URL final en cada componente que muestra fotos.
 
 ### 4. Ejecutar en desarrollo
 

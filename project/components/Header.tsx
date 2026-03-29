@@ -7,60 +7,56 @@ export default function Header() {
   const [menuAbierto, setMenuAbierto] = useState(false);
 
   const enlaces = [
-    { href: "/#servicios", label: "Servicios" },
-    { href: "/#equipo", label: "Equipo" },
-    { href: "/#horarios", label: "Horarios" },
+    { href: "/turnos", label: "Turnos" },
     { href: "/tienda", label: "Tienda" },
-    { href: "/#ubicacion", label: "Ubicación" },
     { href: "/#contacto", label: "Contacto" },
+    { href: "/#equipo", label: "Sobre nosotros" },
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-zinc-200/80">
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-20 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <img
-         src="/logo.png"
-         alt="Peón Pet's"
-         className="w-10 h-10 object-contain"
-         />
+    <header className="fixed top-0 inset-x-0 z-[100] bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] border-b border-zinc-200/70">
+      <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-4 py-3 sm:px-6 lg:px-20">
+        <Link href="/" className="flex items-center gap-3 rounded-3xl px-2 py-1">
+          <img src="/logo.png" alt="Agro Veterinaria Varoli" className="h-10 w-10 object-contain" />
           <div className="leading-tight">
-            <p className="font-bold text-base text-zinc-900">Peón Pet&apos;s</p>
-            <p className="text-xs text-zinc-500">Clínica Veterinaria</p>
+            <p className="font-['Plus_Jakarta_Sans',Inter,sans-serif] text-sm font-bold text-black sm:text-base">
+              Agro Veterinaria Varoli
+            </p>
+            <p className="font-['Plus_Jakarta_Sans',Inter,sans-serif] text-xs text-zinc-600">La Falda, Córdoba</p>
           </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
           {enlaces.map((e) => (
             <Link
               key={e.href}
               href={e.href}
-              className="relative text-base text-zinc-900 hover:text-[#6B2FA0] transition-colors font-medium
-              after:absolute after:bottom-0 after:left-0
-              after:h-[2px] after:w-0 after:bg-[#6B2FA0]
-              after:transition-all after:duration-300
-              hover:after:w-full"
+              className="font-['Plus_Jakarta_Sans',Inter,sans-serif] text-sm font-medium text-black transition-colors hover:text-[#8B1D1E]"
             >
               {e.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <Link href="/turnos" className="btn-primario text-sm hidden sm:inline-flex">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Link
+            href="/turnos"
+            className="hidden rounded-full bg-[#8B1D1E] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#741718] sm:inline-flex"
+          >
             Sacar turno
           </Link>
+
           <button
             onClick={() => setMenuAbierto(!menuAbierto)}
-            className="md:hidden p-2 rounded-xl border border-zinc-200 hover:bg-zinc-100 transition-colors"
+            className="md:hidden rounded-2xl border border-zinc-300 p-2 text-black transition hover:bg-zinc-100"
             aria-label="Abrir menú"
           >
             {menuAbierto ? (
-              <svg className="w-5 h-5 text-zinc-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg className="w-5 h-5 text-zinc-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
@@ -69,24 +65,26 @@ export default function Header() {
       </div>
 
       {menuAbierto && (
-        <div className="md:hidden bg-white border-t border-zinc-200 px-6 py-4 flex flex-col gap-3">
-          {enlaces.map((e) => (
+        <div className="md:hidden border-t border-zinc-200 bg-white px-4 pb-4 pt-3 sm:px-6">
+          <nav className="flex flex-col gap-2 rounded-3xl border border-zinc-200 bg-white p-3 shadow-sm">
+            {enlaces.map((e) => (
+              <Link
+                key={e.href}
+                href={e.href}
+                onClick={() => setMenuAbierto(false)}
+                className="rounded-2xl px-3 py-2 font-['Plus_Jakarta_Sans',Inter,sans-serif] text-sm font-medium text-black transition hover:bg-zinc-100 hover:text-[#8B1D1E]"
+              >
+                {e.label}
+              </Link>
+            ))}
             <Link
-              key={e.href}
-              href={e.href}
+              href="/turnos"
               onClick={() => setMenuAbierto(false)}
-              className="text-base text-zinc-700 hover:text-[#6B2FA0] py-2 transition-colors font-medium"
+              className="mt-1 inline-flex justify-center rounded-full bg-[#8B1D1E] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#741718]"
             >
-              {e.label}
+              Sacar turno
             </Link>
-          ))}
-          <Link
-            href="/turnos"
-            onClick={() => setMenuAbierto(false)}
-            className="btn-primario text-sm py-3 mt-2"
-          >
-            Sacar turno
-          </Link>
+          </nav>
         </div>
       )}
     </header>
